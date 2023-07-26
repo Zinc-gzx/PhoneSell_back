@@ -8,9 +8,9 @@ const session = require('express-session');
 const PORT = process.env.PORT || 8080;
 const cors = require('cors');
 app.use(cors({
-    origin: ["http://localhost:3000", "https://phonesellfrontend.onrender.com"]
+    origin: ["https://phonesellfrontend.onrender.com"]
 }));
-mongoose.connect("mongodb+srv://zincgao:GAOxin991231@zinc.h7k65is.mongodb.net/PhoneSelling",{
+mongoose.connect(process.env.DB_URI,{
     useNewUrlParser: true,
     useUnifiedTopology: true, 
     useCreateIndex: true,
@@ -35,5 +35,5 @@ app.use(session({
 
 app.use(routes);
 app.listen(PORT, () => {
-    console.log('Server listening on port 8080!');
+    console.log('Server listening on port ${PORT}!');
 })
